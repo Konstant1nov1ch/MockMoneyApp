@@ -1,0 +1,38 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:MockMoney.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1231" d:DesignHeight="800"
+        x:Class="MockMoney.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="testApp">
+
+<Grid>
+    <Image Source="/Assets/backGroundReg.png" Width="1231" Height="800" />
+    <Border Background="Transparent" HorizontalAlignment="Center" Margin="0,575,0,0" Width="378" Height="214">
+        <Border Background="WhiteSmoke" CornerRadius="10" Padding="20" Opacity="0.65">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="Sign in" HorizontalAlignment="Center" Height="60" Opacity="1"/>
+                <TextBox Watermark="Username" CornerRadius="10" Width="291" Margin="0,-20,0,0" Height="26" />
+                <TextBox Watermark="Password" CornerRadius="10" Width="291" Height="26" PasswordChar="•" Margin="0,10,0,0"/>
+                <Button Content="Login" Margin="0,15" CornerRadius="10" Width="291" Height="30" Background="#060E1B" Foreground="White" HorizontalContentAlignment="Center"/>            
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="У вас еще нет аккаунта?" VerticalAlignment="Center"/>
+                    <Button Content="Регистрация" VerticalAlignment="Center" Background="Transparent" Command="{Binding OpenRegistrationCommand}">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <TextBlock Text="{TemplateBinding Content}" Foreground="#060E1B" TextDecorations="Underline"/>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Border>
+</Grid>
+
+
+</Window>
+
