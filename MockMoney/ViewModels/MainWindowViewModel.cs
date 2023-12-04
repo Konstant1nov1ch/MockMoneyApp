@@ -12,40 +12,41 @@ namespace MockMoney.ViewModels
 {
     public partial class MainWindowViewModel : ViewModelBase
     {
-        private User currentUser;
-        private string username;
-        private string password;
-        private string token;
-        private string login = "";
-        private readonly IExternalAPIService externalAPIService;
+        private User _currentUser;
+        private string _username;
+        private string _password;
+        private string _token;
+        private string _login = "";
+        private readonly IExternalAPIService _externalAPIService;
 
         public User CurrentUser
         {
-            get => currentUser;
-            set => this.RaiseAndSetIfChanged(ref currentUser, value);
+            get => _currentUser;
+            set => this.RaiseAndSetIfChanged(ref _currentUser, value);
         }
 
         public string Username
         {
-            get => username;
-            set => this.RaiseAndSetIfChanged(ref username, value);
+            get => _username;
+            set => this.RaiseAndSetIfChanged(ref _username, value);
         }
 
         public string Password
         {
-            get => password;
-            set => this.RaiseAndSetIfChanged(ref password, value);
+            get => _password;
+            set => this.RaiseAndSetIfChanged(ref _password, value);
         }
+        
         public string Login
         {
-            get => login;
-            set => this.RaiseAndSetIfChanged(ref login, value);
+            get => _login;
+            set => this.RaiseAndSetIfChanged(ref _login, value);
         }
 
         public string Token
         {
-            get => token;
-            set => this.RaiseAndSetIfChanged(ref token, value);
+            get => _token;
+            set => this.RaiseAndSetIfChanged(ref _token, value);
         }
 
         public ReactiveCommand<Unit, Unit> LoginCommand { get; }
@@ -53,16 +54,15 @@ namespace MockMoney.ViewModels
 
         public MainWindowViewModel(IExternalAPIService externalAPIService)
         {
-            this.externalAPIService = externalAPIService ?? throw new ArgumentNullException(nameof(externalAPIService));
+            _externalAPIService = externalAPIService ?? throw new ArgumentNullException(nameof(externalAPIService));
 
             LoginCommand = ReactiveCommand.CreateFromTask(LoginAsync);
             OpenRegistrationCommand = ReactiveCommand.Create(() => OpenRegistration());
-            OpenRegistrationCommand.Subscribe();
         }
 
         private async Task LoginAsync()
         {
-            Token = await externalAPIService.GetJWTTokenAsync(Login, Password);
+            Token = await _externalAPIService.GetJWTTokenAsync(Login, Password);
 
             if (!string.IsNullOrEmpty(Token))
             {
@@ -85,8 +85,8 @@ namespace MockMoney.ViewModels
             {
                 var mainWindow = (MainWindow)desktop.MainWindow;
 
-                var registrationWindowViewModel = new RegistrationWindowViewModel(externalAPIService);
-                var registrationWindow = new RegistrationWindow(externalAPIService)
+                var registrationWindowViewModel = new RegistrationWindowViewModel(_externalAPIService);
+                var registrationWindow = new RegistrationWindow(_externalAPIService)
                 {
                     DataContext = registrationWindowViewModel
                 };

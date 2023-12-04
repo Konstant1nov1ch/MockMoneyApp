@@ -1,17 +1,16 @@
 using Avalonia.Controls;
 using MockMoney.Services;
-using MockMoney.ViewModels;
 
 namespace MockMoney.Views
 {
     public partial class RegistrationWindow : Window
     {
-        private readonly IExternalAPIService externalAPIService;
+        private readonly IExternalAPIService _externalAPIService;
 
         public RegistrationWindow(IExternalAPIService externalAPIService)
         {
+            _externalAPIService = externalAPIService;
             InitializeComponent();
-            DataContext = new RegistrationWindowViewModel(externalAPIService);
         }
     }
 }
