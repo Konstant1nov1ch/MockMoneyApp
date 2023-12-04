@@ -1,6 +1,7 @@
 using System;
 using Avalonia;
 using System.Reactive;
+using System.Reactive.Linq;
 using System.Threading.Tasks;
 using MockMoney.Services;
 using Avalonia.Controls.ApplicationLifetimes;
@@ -39,7 +40,10 @@ namespace MockMoney.ViewModels
         public bool AgreementAccepted
         {
             get => _agreementAccepted;
-            set => this.RaiseAndSetIfChanged(ref _agreementAccepted, value);
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _agreementAccepted, value);
+            }
         }
 
         public ReactiveCommand<Unit, Unit> RegisterCommand { get; }
@@ -52,11 +56,12 @@ namespace MockMoney.ViewModels
                 x => x.Username,
                 x => x.Password,
                 x => x.DisplayName,
-                (_, _, _) =>
+                x => x.AgreementAccepted,
+                (_, _, _, accepted) =>
                     !string.IsNullOrWhiteSpace(Username) &&
                     !string.IsNullOrWhiteSpace(Password) &&
                     !string.IsNullOrWhiteSpace(DisplayName) &&
-                    AgreementAccepted
+                    accepted
             );
 
             RegisterCommand = ReactiveCommand.CreateFromTask(
