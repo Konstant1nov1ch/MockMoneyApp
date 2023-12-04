@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "cqZ/EQQC/5Yy5qc2af6dS8aVvWRaZBg0rOJJhkhD6X3a6c6rUP8tRKgSg+G8T7tOUSYPU2KqZWB9DixJbiHUGg==",
+  "dgSpecHash": "QN4Iz2YlY0tKTVZi9ojDQuuHU1gGTNJDmUsHUHYqZpchDRWjlnbQ6MkYFvzcykLPU77tzPDHJOg20bpxcSa5LQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\kosty\\RiderProjects\\MockMoney\\MockMoney\\MockMoney.csproj",
   "expectedPackageFiles": [
@@ -38,6 +38,9 @@
     "C:\\Users\\kosty\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\kosty\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\kosty\\.nuget\\packages\\reactiveui\\18.3.1\\reactiveui.18.3.1.nupkg.sha512",
+    "C:\\Users\\kosty\\.nuget\\packages\\serilog\\3.1.2-dev-02097\\serilog.3.1.2-dev-02097.nupkg.sha512",
+    "C:\\Users\\kosty\\.nuget\\packages\\serilog.sinks.console\\5.0.1\\serilog.sinks.console.5.0.1.nupkg.sha512",
+    "C:\\Users\\kosty\\.nuget\\packages\\serilog.sinks.console.logthemes\\0.3.0\\serilog.sinks.console.logthemes.0.3.0.nupkg.sha512",
     "C:\\Users\\kosty\\.nuget\\packages\\skiasharp\\2.88.6\\skiasharp.2.88.6.nupkg.sha512",
     "C:\\Users\\kosty\\.nuget\\packages\\skiasharp.nativeassets.linux\\2.88.6\\skiasharp.nativeassets.linux.2.88.6.nupkg.sha512",
     "C:\\Users\\kosty\\.nuget\\packages\\skiasharp.nativeassets.macos\\2.88.6\\skiasharp.nativeassets.macos.2.88.6.nupkg.sha512",

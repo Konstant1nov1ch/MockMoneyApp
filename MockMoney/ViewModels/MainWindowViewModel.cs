@@ -1,17 +1,29 @@
 ﻿using ReactiveUI;
-using System.Threading.Tasks;
 using System;
 using System.Reactive;
-using MockMoney.Views;
+using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
+using MockMoney.Models;
+using MockMoney.Views;
+using MockMoney.Services;
 
 namespace MockMoney.ViewModels
 {
     public partial class MainWindowViewModel : ViewModelBase
     {
+        private User currentUser;
         private string username;
         private string password;
+        private string token;
+        private string login = "";
+        private readonly IExternalAPIService externalAPIService;
+
+        public User CurrentUser
+        {
+            get => currentUser;
+            set => this.RaiseAndSetIfChanged(ref currentUser, value);
+        }
 
         public string Username
         {
@@ -24,21 +36,47 @@ namespace MockMoney.ViewModels
             get => password;
             set => this.RaiseAndSetIfChanged(ref password, value);
         }
+        public string Login
+        {
+            get => login;
+            set => this.RaiseAndSetIfChanged(ref login, value);
+        }
+
+        public string Token
+        {
+            get => token;
+            set => this.RaiseAndSetIfChanged(ref token, value);
+        }
 
         public ReactiveCommand<Unit, Unit> LoginCommand { get; }
         public ReactiveCommand<Unit, Unit> OpenRegistrationCommand { get; }
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(IExternalAPIService externalAPIService)
         {
+            this.externalAPIService = externalAPIService ?? throw new ArgumentNullException(nameof(externalAPIService));
+
             LoginCommand = ReactiveCommand.CreateFromTask(LoginAsync);
-            OpenRegistrationCommand = ReactiveCommand.Create(OpenRegistration);
+            OpenRegistrationCommand = ReactiveCommand.Create(() => OpenRegistration());
+            OpenRegistrationCommand.Subscribe();
         }
 
         private async Task LoginAsync()
         {
-            // Логика для входа
-            Console.WriteLine($"Username: {Username}, Password: {Password}");
-            // Возможно, здесь будете вызывать метод для проверки входа или обработки данных
+            Token = await externalAPIService.GetJWTTokenAsync(Login, Password);
+
+            if (!string.IsNullOrEmpty(Token))
+            {
+                Console.WriteLine($"Login successful! Token: {Token}");
+                CurrentUser = new User(Username, Login, Password)
+                {
+                    Token = Token
+                };
+                Console.WriteLine($": {CurrentUser}");
+            }
+            else
+            {
+                Console.WriteLine("Login failed. Invalid credentials.");
+            }
         }
 
         private void OpenRegistration()
@@ -47,9 +85,10 @@ namespace MockMoney.ViewModels
             {
                 var mainWindow = (MainWindow)desktop.MainWindow;
 
-                var registrationWindow = new RegistrationWindow
+                var registrationWindowViewModel = new RegistrationWindowViewModel(externalAPIService);
+                var registrationWindow = new RegistrationWindow(externalAPIService)
                 {
-                    DataContext = new RegistrationWindowViewModel()
+                    DataContext = registrationWindowViewModel
                 };
 
                 registrationWindow.Closed += (_, _) =>

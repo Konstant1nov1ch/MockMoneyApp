@@ -25,3 +25,6 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [C:/Users/kosty/RiderProjects/MockMoney/MockMoney/Views/RegistrationWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/kosty/RiderProjects/MockMoney/MockMoney/Views/WindowFirst.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

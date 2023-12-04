@@ -61,6 +61,18 @@
             "Avalonia.Themes.Fluent": {
               "target": "Package",
               "version": "[11.0.5, )"
+            },
+            "Serilog": {
+              "target": "Package",
+              "version": "[3.1.2-dev-02097, )"
+            },
+            "Serilog.Sinks.Console": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Serilog.Sinks.Console.LogThemes": {
+              "target": "Package",
+              "version": "[0.3.0, )"
             }
           },
           "imports": [

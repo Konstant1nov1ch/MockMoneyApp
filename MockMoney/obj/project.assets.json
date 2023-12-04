@@ -806,6 +806,47 @@
           }
         }
       },
+      "Serilog/3.1.2-dev-02097": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Serilog.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Serilog.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Serilog.Sinks.Console/5.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Serilog": "3.1.1"
+        },
+        "compile": {
+          "lib/net6.0/Serilog.Sinks.Console.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Serilog.Sinks.Console.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Serilog.Sinks.Console.LogThemes/0.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Serilog.Sinks.Console": "4.1.0"
+        },
+        "compile": {
+          "lib/net6.0/Serilog.Sinks.Console.LogThemes.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/Serilog.Sinks.Console.LogThemes.dll": {}
+        }
+      },
       "SkiaSharp/2.88.6": {
         "type": "package",
         "dependencies": {
@@ -2549,6 +2590,75 @@
         "logo.png",
         "reactiveui.18.3.1.nupkg.sha512",
         "reactiveui.nuspec"
+      ]
+    },
+    "Serilog/3.1.2-dev-02097": {
+      "sha512": "1kANtrvBOCcB/+rUuwCEoeDOdNhwjE1Rtk2AS+MF34DRhxxOjm5tTUbudWTvlBcIChmbQxW3K4Yr0dOn3+hcGA==",
+      "type": "package",
+      "path": "serilog/3.1.2-dev-02097",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "icon.png",
+        "lib/net462/Serilog.dll",
+        "lib/net462/Serilog.xml",
+        "lib/net471/Serilog.dll",
+        "lib/net471/Serilog.xml",
+        "lib/net5.0/Serilog.dll",
+        "lib/net5.0/Serilog.xml",
+        "lib/net6.0/Serilog.dll",
+        "lib/net6.0/Serilog.xml",
+        "lib/net7.0/Serilog.dll",
+        "lib/net7.0/Serilog.xml",
+        "lib/netstandard2.0/Serilog.dll",
+        "lib/netstandard2.0/Serilog.xml",
+        "lib/netstandard2.1/Serilog.dll",
+        "lib/netstandard2.1/Serilog.xml",
+        "serilog.3.1.2-dev-02097.nupkg.sha512",
+        "serilog.nuspec"
+      ]
+    },
+    "Serilog.Sinks.Console/5.0.1": {
+      "sha512": "6Jt8jl9y2ey8VV7nVEUAyjjyxjAQuvd5+qj4XYAT9CwcsvR70HHULGBeD+K2WCALFXf7CFsNQT4lON6qXcu2AA==",
+      "type": "package",
+      "path": "serilog.sinks.console/5.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "icon.png",
+        "lib/net462/Serilog.Sinks.Console.dll",
+        "lib/net462/Serilog.Sinks.Console.xml",
+        "lib/net471/Serilog.Sinks.Console.dll",
+        "lib/net471/Serilog.Sinks.Console.xml",
+        "lib/net5.0/Serilog.Sinks.Console.dll",
+        "lib/net5.0/Serilog.Sinks.Console.xml",
+        "lib/net6.0/Serilog.Sinks.Console.dll",
+        "lib/net6.0/Serilog.Sinks.Console.xml",
+        "lib/net7.0/Serilog.Sinks.Console.dll",
+        "lib/net7.0/Serilog.Sinks.Console.xml",
+        "lib/netstandard2.0/Serilog.Sinks.Console.dll",
+        "lib/netstandard2.0/Serilog.Sinks.Console.xml",
+        "lib/netstandard2.1/Serilog.Sinks.Console.dll",
+        "lib/netstandard2.1/Serilog.Sinks.Console.xml",
+        "serilog.sinks.console.5.0.1.nupkg.sha512",
+        "serilog.sinks.console.nuspec"
+      ]
+    },
+    "Serilog.Sinks.Console.LogThemes/0.3.0": {
+      "sha512": "6r5wQsJp/9u3i9Boqy4FCn26ibfzI3Irijm+05yJ/63f9KFC5TCrw9erH25XNYJd2++AldpKpvLfH37+JpKL4g==",
+      "type": "package",
+      "path": "serilog.sinks.console.logthemes/0.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icon.png",
+        "lib/net5.0/Serilog.Sinks.Console.LogThemes.dll",
+        "lib/net6.0/Serilog.Sinks.Console.LogThemes.dll",
+        "lib/net7.0/Serilog.Sinks.Console.LogThemes.dll",
+        "serilog.sinks.console.logthemes.0.3.0.nupkg.sha512",
+        "serilog.sinks.console.logthemes.nuspec"
       ]
     },
     "SkiaSharp/2.88.6": {
@@ -4692,7 +4802,10 @@
       "Avalonia.Diagnostics >= 11.0.5",
       "Avalonia.Fonts.Inter >= 11.0.5",
       "Avalonia.ReactiveUI >= 11.0.5",
-      "Avalonia.Themes.Fluent >= 11.0.5"
+      "Avalonia.Themes.Fluent >= 11.0.5",
+      "Serilog >= 3.1.2-dev-02097",
+      "Serilog.Sinks.Console >= 5.0.1",
+      "Serilog.Sinks.Console.LogThemes >= 0.3.0"
     ]
   },
   "packageFolders": {
@@ -4755,6 +4868,18 @@
           "Avalonia.Themes.Fluent": {
             "target": "Package",
             "version": "[11.0.5, )"
+          },
+          "Serilog": {
+            "target": "Package",
+            "version": "[3.1.2-dev-02097, )"
+          },
+          "Serilog.Sinks.Console": {
+            "target": "Package",
+            "version": "[5.0.1, )"
+          },
+          "Serilog.Sinks.Console.LogThemes": {
+            "target": "Package",
+            "version": "[0.3.0, )"
           }
         },
         "imports": [

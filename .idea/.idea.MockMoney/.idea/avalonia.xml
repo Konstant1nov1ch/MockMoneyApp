@@ -7,6 +7,7 @@
         <entry key="MockMoney/ViewModels/RegistrationWindow.axaml" value="MockMoney/MockMoney.csproj" />
         <entry key="MockMoney/Views/MainWindow.axaml" value="MockMoney/MockMoney.csproj" />
         <entry key="MockMoney/Views/RegistrationWindow.axaml" value="MockMoney/MockMoney.csproj" />
+        <entry key="MockMoney/Views/WindowFirst.axaml" value="MockMoney/MockMoney.csproj" />
       </map>
     </option>
   </component>

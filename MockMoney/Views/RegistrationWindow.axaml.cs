@@ -1,20 +1,17 @@
-using Avalonia.Markup.Xaml;
-using MockMoney.ViewModels;
 using Avalonia.Controls;
+using MockMoney.Services;
+using MockMoney.ViewModels;
 
 namespace MockMoney.Views
 {
     public partial class RegistrationWindow : Window
     {
-        public RegistrationWindow()
+        private readonly IExternalAPIService externalAPIService;
+
+        public RegistrationWindow(IExternalAPIService externalAPIService)
         {
             InitializeComponent();
-            DataContext = new RegistrationWindowViewModel();
-        }
-
-        private void InitializeComponent()
-        {
-            AvaloniaXamlLoader.Load(this);
+            DataContext = new RegistrationWindowViewModel(externalAPIService);
         }
     }
 }

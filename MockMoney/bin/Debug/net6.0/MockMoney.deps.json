@@ -13,7 +13,10 @@
           "Avalonia.Diagnostics": "11.0.5",
           "Avalonia.Fonts.Inter": "11.0.5",
           "Avalonia.ReactiveUI": "11.0.5",
-          "Avalonia.Themes.Fluent": "11.0.5"
+          "Avalonia.Themes.Fluent": "11.0.5",
+          "Serilog": "3.1.2-dev-02097",
+          "Serilog.Sinks.Console": "5.0.1",
+          "Serilog.Sinks.Console.LogThemes": "0.3.0"
         },
         "runtime": {
           "MockMoney.dll": {}
@@ -627,6 +630,36 @@
           }
         }
       },
+      "Serilog/3.1.2-dev-02097": {
+        "runtime": {
+          "lib/net6.0/Serilog.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "3.1.2.0"
+          }
+        }
+      },
+      "Serilog.Sinks.Console/5.0.1": {
+        "dependencies": {
+          "Serilog": "3.1.2-dev-02097"
+        },
+        "runtime": {
+          "lib/net6.0/Serilog.Sinks.Console.dll": {
+            "assemblyVersion": "5.0.1.0",
+            "fileVersion": "5.0.1.0"
+          }
+        }
+      },
+      "Serilog.Sinks.Console.LogThemes/0.3.0": {
+        "dependencies": {
+          "Serilog.Sinks.Console": "5.0.1"
+        },
+        "runtime": {
+          "lib/net6.0/Serilog.Sinks.Console.LogThemes.dll": {
+            "assemblyVersion": "0.3.0.0",
+            "fileVersion": "0.3.0.0"
+          }
+        }
+      },
       "SkiaSharp/2.88.6": {
         "dependencies": {
           "SkiaSharp.NativeAssets.Win32": "2.88.6",
@@ -1213,6 +1246,27 @@
       "sha512": "sha512-0tclGtjrRPfA2gbjiM7O3DeNmo6/TpDn7CMN6jgzDrbgrnysM7oEzjGEeXbtXaOxH6kEf6RiMKWobZoSgbBXhQ==",
       "path": "reactiveui/18.3.1",
       "hashPath": "reactiveui.18.3.1.nupkg.sha512"
+    },
+    "Serilog/3.1.2-dev-02097": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1kANtrvBOCcB/+rUuwCEoeDOdNhwjE1Rtk2AS+MF34DRhxxOjm5tTUbudWTvlBcIChmbQxW3K4Yr0dOn3+hcGA==",
+      "path": "serilog/3.1.2-dev-02097",
+      "hashPath": "serilog.3.1.2-dev-02097.nupkg.sha512"
+    },
+    "Serilog.Sinks.Console/5.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6Jt8jl9y2ey8VV7nVEUAyjjyxjAQuvd5+qj4XYAT9CwcsvR70HHULGBeD+K2WCALFXf7CFsNQT4lON6qXcu2AA==",
+      "path": "serilog.sinks.console/5.0.1",
+      "hashPath": "serilog.sinks.console.5.0.1.nupkg.sha512"
+    },
+    "Serilog.Sinks.Console.LogThemes/0.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6r5wQsJp/9u3i9Boqy4FCn26ibfzI3Irijm+05yJ/63f9KFC5TCrw9erH25XNYJd2++AldpKpvLfH37+JpKL4g==",
+      "path": "serilog.sinks.console.logthemes/0.3.0",
+      "hashPath": "serilog.sinks.console.logthemes.0.3.0.nupkg.sha512"
     },
     "SkiaSharp/2.88.6": {
       "type": "package",

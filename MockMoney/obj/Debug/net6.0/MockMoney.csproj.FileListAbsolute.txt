@@ -134,3 +134,7 @@ C:\Users\kosty\RiderProjects\MockMoney\MockMoney\obj\Debug\net6.0\MockMoney.pdb
 C:\Users\kosty\RiderProjects\MockMoney\MockMoney\obj\Debug\net6.0\MockMoney.csproj.CopyComplete
 C:\Users\kosty\RiderProjects\MockMoney\MockMoney\obj\Debug\net6.0\MockMoney.genruntimeconfig.cache
 C:\Users\kosty\RiderProjects\MockMoney\MockMoney\obj\Debug\net6.0\ref\MockMoney.dll
+C:\Users\kosty\RiderProjects\MockMoney\MockMoney\obj\Debug\net6.0\MockMoney.sourcelink.json
+C:\Users\kosty\RiderProjects\MockMoney\MockMoney\bin\Debug\net6.0\Serilog.dll
+C:\Users\kosty\RiderProjects\MockMoney\MockMoney\bin\Debug\net6.0\Serilog.Sinks.Console.dll
+C:\Users\kosty\RiderProjects\MockMoney\MockMoney\bin\Debug\net6.0\Serilog.Sinks.Console.LogThemes.dll
