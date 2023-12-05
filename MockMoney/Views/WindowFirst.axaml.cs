@@ -1,13 +1,21 @@
-using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
+using MockMoney.ViewModels;
 
-namespace MockMoney.Views;
-
-public partial class WindowFirst : Window
+namespace MockMoney.Views
 {
-    public WindowFirst()
+    public partial class FirstWindow : Window
     {
-        InitializeComponent();
+        public FirstWindow()
+        {
+            if (Avalonia.Controls.Design.IsDesignMode)
+            {
+                InitializeComponent();
+                return;
+            }
+
+            InitializeComponent();
+            DataContext = new FirstWindowViewModel();
+        }
     }
+
 }

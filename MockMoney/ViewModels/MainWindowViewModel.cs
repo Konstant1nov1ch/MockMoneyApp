@@ -10,7 +10,7 @@ using MockMoney.Services;
 
 namespace MockMoney.ViewModels
 {
-    public partial class MainWindowViewModel : ViewModelBase
+    public class MainWindowViewModel : ViewModelBase
     {
         private User _currentUser;
         private string _username;
@@ -56,8 +56,23 @@ namespace MockMoney.ViewModels
         {
             _externalAPIService = externalAPIService ?? throw new ArgumentNullException(nameof(externalAPIService));
 
-            LoginCommand = ReactiveCommand.CreateFromTask(LoginAsync);
-            OpenRegistrationCommand = ReactiveCommand.Create(() => OpenRegistration());
+            if (Avalonia.Controls.Design.IsDesignMode)
+            {
+                // Инициализация фиктивных данных для дизайнера
+                Username = "design_user";
+                Password = "design_password";
+                Login = "design_login";
+                Token = "design_token";
+                CurrentUser = new User("Design User", "design_login", "design_password")
+                {
+                    Token = "design_token"
+                };
+            }
+            else
+            {
+                LoginCommand = ReactiveCommand.CreateFromTask(LoginAsync);
+                OpenRegistrationCommand = ReactiveCommand.Create(() => OpenRegistration());
+            }
         }
 
         private async Task LoginAsync()
@@ -71,13 +86,35 @@ namespace MockMoney.ViewModels
                 {
                     Token = Token
                 };
-                Console.WriteLine($": {CurrentUser}");
+
+                var firstWindowViewModel = new FirstWindowViewModel();
+                firstWindowViewModel.NavigateCommand.Execute("Page1"); 
+
+                // Открыть FirstWindow с соответствующей ViewModel
+                if (Application.Current.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+                {
+                    var firstWindow = new FirstWindow
+                    {
+                        DataContext = firstWindowViewModel
+                    };
+
+                    var mainWindow = (MainWindow)desktop.MainWindow;
+                    firstWindow.Closed += (_, _) =>
+                    {
+                        mainWindow.DataContext = this;
+                        mainWindow.Show();
+                    };
+
+                    firstWindow.Show();
+                    mainWindow.Hide();
+                }
             }
             else
             {
                 Console.WriteLine("Login failed. Invalid credentials.");
             }
         }
+
 
         private void OpenRegistration()
         {

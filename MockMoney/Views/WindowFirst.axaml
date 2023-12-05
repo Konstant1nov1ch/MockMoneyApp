@@ -1,9 +1,63 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:MockMoney.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="MockMoney.Views.WindowFirst"
-        Title="WindowFirst">
-    Welcome to Avalonia!
+        mc:Ignorable="d" d:DesignWidth="1231" d:DesignHeight="800"
+        x:Class="MockMoney.Views.FirstWindow"
+        x:DataType="vm:FirstWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="testApp">
+    <Window.DataContext>
+        <vm:FirstWindowViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Background="White">
+            <Grid Background="#F5F5F5"></Grid>
+        </StackPanel>
+
+        <!-- Left Column with Buttons -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Background="#F5F5F5">
+            <Grid Background="White">
+                <StackPanel Orientation="Vertical" Margin="5" VerticalAlignment="Stretch">
+                    <Button Padding="10" Content="Page 1" Command="{Binding NavigateCommand}" CommandParameter="Page1"/>
+                    <Button Padding="10" Content="Page 2" Command="{Binding NavigateCommand}" CommandParameter="Page2"/>
+                    <Button Padding="10" Content="Page 3" Command="{Binding NavigateCommand}" CommandParameter="Page3"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+        
+        <!-- ContentControl for displaying pages -->
+        <ContentControl Grid.Row="1" Content="{Binding CurrentContent}">
+            <ContentControl.Resources>
+                <DataTemplate x:Key="Page1">
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Grid Background="#F5F5F5">
+                            <Canvas VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0, 10, 0, 0">
+                                <Rectangle Width="220" Height="140" Fill="White" Canvas.Left="-323"/>
+                                <Rectangle Width="220" Height="140" Fill="White" Canvas.Left="103"/>
+                            </Canvas>
+                            <Rectangle Width="726" Height="420" Fill="White" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,110"/>
+                            <TextBlock Text="This is Page 1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Grid>
+                </DataTemplate>
+                <DataTemplate x:Key="Page2">
+                    <Grid Background="#F5F5F5" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Rectangle Width="726" Height="420" Fill="White" Margin="0,0,0,110"/>
+                        <TextBlock Text="This is Page 2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
+                </DataTemplate>
+                <DataTemplate x:Key="Page3">
+                    <TextBlock Text="Buy" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </DataTemplate>
+            </ContentControl.Resources>
+        </ContentControl>
+    </Grid>
 </Window>

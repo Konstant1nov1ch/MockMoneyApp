@@ -1,10 +1,10 @@
 using System;
-using Avalonia;
 using System.Reactive;
-using System.Reactive.Linq;
 using System.Threading.Tasks;
-using MockMoney.Services;
+using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
+using MockMoney.Services;
 using MockMoney.Views;
 using ReactiveUI;
 
@@ -12,12 +12,11 @@ namespace MockMoney.ViewModels
 {
     public partial class RegistrationWindowViewModel : ViewModelBase
     {
-        private readonly IExternalAPIService _externalAPIService;
-
         private string _displayName;
         private string _username;
         private string _password;
         private bool _agreementAccepted;
+        private readonly IExternalAPIService _externalAPIService;
 
         public string DisplayName
         {
@@ -40,10 +39,7 @@ namespace MockMoney.ViewModels
         public bool AgreementAccepted
         {
             get => _agreementAccepted;
-            set
-            {
-                this.RaiseAndSetIfChanged(ref _agreementAccepted, value);
-            }
+            set => this.RaiseAndSetIfChanged(ref _agreementAccepted, value);
         }
 
         public ReactiveCommand<Unit, Unit> RegisterCommand { get; }
@@ -52,36 +48,49 @@ namespace MockMoney.ViewModels
         {
             _externalAPIService = externalAPIService ?? throw new ArgumentNullException(nameof(externalAPIService));
 
-            var canRegister = this.WhenAnyValue(
-                x => x.Username,
-                x => x.Password,
-                x => x.DisplayName,
-                x => x.AgreementAccepted,
-                (_, _, _, accepted) =>
-                    !string.IsNullOrWhiteSpace(Username) &&
-                    !string.IsNullOrWhiteSpace(Password) &&
-                    !string.IsNullOrWhiteSpace(DisplayName) &&
-                    accepted
-            );
+            if (Avalonia.Controls.Design.IsDesignMode)
+            {
+                // Фиктивные данные для дизайнера
+                DisplayName = "Design Mode User";
+                Username = "design_user";
+                Password = "design_password";
+                AgreementAccepted = true;
+            }
+            else
+            {
+                var canRegister = this.WhenAnyValue(
+                    x => x.Username,
+                    x => x.Password,
+                    x => x.DisplayName,
+                    x => x.AgreementAccepted,
+                    (_, _, _, accepted) =>
+                        !string.IsNullOrWhiteSpace(Username) &&
+                        !string.IsNullOrWhiteSpace(Password) &&
+                        !string.IsNullOrWhiteSpace(DisplayName) &&
+                        accepted
+                );
 
-            RegisterCommand = ReactiveCommand.CreateFromTask(
-                RegisterAsync,
-                canRegister
-            );
+                RegisterCommand = ReactiveCommand.CreateFromTask(
+                    RegisterAsync,
+                    canRegister
+                );
 
-            RegisterCommand.Subscribe(_ => CloseWindow());
+                RegisterCommand.Subscribe(_ => CloseWindow());
+            }
         }
 
         private async Task RegisterAsync()
         {
             try
             {
-                if (AgreementAccepted)
+                if (Avalonia.Controls.Design.IsDesignMode)
+                {
+                    // Режим дизайна - добавьте нужную логику, если требуется
+                }
+                else if (AgreementAccepted)
                 {
                     string registrationResult = await _externalAPIService.RegisterAsync(DisplayName, Username, Password);
-
                     Console.WriteLine(registrationResult); // Вывод результата регистрации
-
                     // Дополнительные действия после успешной регистрации
                 }
                 else

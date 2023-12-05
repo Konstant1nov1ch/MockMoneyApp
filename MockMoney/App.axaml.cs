@@ -5,8 +5,7 @@ using MockMoney.ViewModels;
 using MockMoney.Views;
 using MockMoney.Services;
 using Serilog;
-using Serilog.Events;
-using Serilog.Sinks.Console;
+
 
 namespace MockMoney
 {
@@ -27,14 +26,8 @@ namespace MockMoney
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                // Создаем экземпляр сервиса
                 var externalAPIService = new ExternalAPIService(new System.Net.Http.HttpClient());
-
-                // Передаем сервис в конструктор MainWindowViewModel
                 var mainWindowViewModel = new MainWindowViewModel(externalAPIService);
-
-                // Используем логгер для записи информации
-                Log.Information("MainWindowViewModel created");
 
                 desktop.MainWindow = new MainWindow
                 {
